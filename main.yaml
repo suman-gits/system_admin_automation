@@ -1,0 +1,15 @@
+---
+ - name: playbook
+   hosts: server
+   vars_files:
+     - vars.yml
+   tasks:
+    - name: Create cron job to take Mysql backup & upload it to s3 bucket
+      cron:
+        name: Scheduled MySQL Backup
+        job: "mysqldump -u root --password='{{ mysql_password }}' '{{ db }}' tblEmployee1 > /tmp/dump3.sql && aws s3 cp /tmp/dump3.sql s3://backup-suman"
+        minute: "*"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
