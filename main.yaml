@@ -8,8 +8,8 @@
       cron:
         name: Scheduled MySQL Backup
         job: "mysqldump -u root --password='{{ mysql_password }}' '{{ db }}' tblEmployee1 > /tmp/dump3.sql && aws s3 cp /tmp/dump3.sql s3://backup-suman"
-        minute: "*"
-        hour: "*"
-        day: "*"
+        minute: "0"
+        hour: "23"
+        day: "5"
         month: "*"
-        weekday: "*"
+        
